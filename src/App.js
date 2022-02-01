@@ -1,19 +1,20 @@
 import Home from './views/Home/Home';
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
-import Details from './components/List/Details/Details';
+import AchDetail from './views/Home/ACH/AchDetail';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Link to="/">Home</Link>
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/villager/:villagerID">
-            <Details />
+          <Route path="/villagers/:villagerID">
+            <AchDetail />
           </Route>
         </Switch>
       </BrowserRouter>
