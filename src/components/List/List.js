@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function List({ villagers }) {
   return (
@@ -6,8 +7,10 @@ export default function List({ villagers }) {
       <h1>Animal Crossing Cuties:</h1>
       {villagers.map((vill) => (
         <>
-          <p key={vill.id}>{vill.name['name-USen']}</p>
-          <img src={vill.icon_uri} />
+          <Link key={vill.id} to={`/villagers/${villagers.id}`}>
+            <p key={vill.id}>{vill.name['name-USen']}</p>
+            <img src={vill.icon_uri} />
+          </Link>
         </>
       ))}
     </div>

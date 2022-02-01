@@ -1,16 +1,27 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import Details from '../../components/List/Details/Details';
 import List from '../../components/List/List';
-import { getVillager } from '../../services/ach';
+import { getVillager, getVillagerByID } from '../../services/ach';
 
 export default function Home() {
   const [villagers, setVillagers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [villager, setVillager] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getVillager();
       setVillagers(data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getVillagerByID();
+      setVillager(data);
       setLoading(false);
     };
     fetchData();
@@ -23,6 +34,7 @@ export default function Home() {
   return (
     <div>
       <List villagers={villagers} />
+      <Details villager={villager} />
     </div>
   );
 }
