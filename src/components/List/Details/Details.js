@@ -12,5 +12,3 @@ export default function Details({ villager }) {
     </div>
   );
 }
-
-// map and render the villagers
