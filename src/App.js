@@ -1,13 +1,13 @@
 import Home from './views/Home/Home';
 import './App.css';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
-import AchDetail from './views/Home/ACH/AchDetail';
+import AchDetail from './views/ACH/AchDetail';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Link to="/">Home</Link>
         <Switch>
           <Route exact path="/">
@@ -17,7 +17,7 @@ function App() {
             <AchDetail />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

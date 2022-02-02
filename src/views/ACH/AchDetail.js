@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Details from '../../../components/List/Details/Details';
-import { getVillagerByID } from '../../../services/ach';
+import Details from '../../components/List/Details/Details';
+import { getVillagerByID } from '../../services/ach';
 import { useHistory } from 'react-router-dom';
 
 export default function AchDetail() {
