@@ -106,7 +106,7 @@ const mockResponse = [
 ];
 
 const server = setupServer(
-  rest.get('http://acnhapi.com/v1a/villagers', (req, res, ctx) => {
+  rest.get('https://acnhapi.com/v1a/villagers', (req, res, ctx) => {
     return res(ctx.json(mockResponse));
   })
 );
