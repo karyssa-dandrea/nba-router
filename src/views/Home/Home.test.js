@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import Home from './Home';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
+import userEvent from '@testing-library/user-event';
 
 const mockResponse = [
   {
@@ -103,6 +104,55 @@ const mockResponse = [
       'catch-EUru': 'го-го-го',
     },
   },
+  {
+    id: 238,
+    'file-name': 'lon01',
+    name: {
+      'name-USen': 'Elvis',
+      'name-EUen': 'Elvis',
+      'name-EUde': 'Leonardo',
+      'name-EUes': 'Elvis',
+      'name-USes': 'Elvis',
+      'name-EUfr': 'Elvis',
+      'name-USfr': 'Elvis',
+      'name-EUit': 'Elvis',
+      'name-EUnl': 'Elvis',
+      'name-CNzh': '皇狮',
+      'name-TWzh': '皇獅',
+      'name-JPja': 'キング',
+      'name-KRko': '킹',
+      'name-EUru': 'Элвис',
+    },
+    personality: 'Cranky',
+    'birthday-string': 'July 23rd',
+    birthday: '23/7',
+    species: 'Lion',
+    gender: 'Male',
+    subtype: 'B',
+    hobby: 'Education',
+    'catch-phrase': 'unh-hunh',
+    icon_uri: 'https://acnhapi.com/v1/icons/villagers/238',
+    image_uri: 'https://acnhapi.com/v1/images/villagers/238',
+    'bubble-color': '#ffd00d',
+    'text-color': '#9b553a',
+    saying: 'Better a live coward than a forgotten hero.',
+    'catch-translations': {
+      'catch-USen': 'unh-hunh',
+      'catch-EUen': 'unh-hunh',
+      'catch-EUde': 'grolll',
+      'catch-EUes': 'groar',
+      'catch-USes': 'groar',
+      'catch-EUfr': 'bébé',
+      'catch-USfr': 'bébé',
+      'catch-EUit': 'unh-hunh',
+      'catch-EUnl': 'aloha',
+      'catch-CNzh': '听懂吧',
+      'catch-TWzh': '聽懂吧',
+      'catch-JPja': 'ダロガ',
+      'catch-KRko': '안그냐',
+      'catch-EUru': 'буги-вуги',
+    },
+  },
 ];
 
 const server = setupServer(
@@ -122,7 +172,17 @@ test('should render list of villagers', async () => {
     </MemoryRouter>
   );
   const img = await screen.findAllByRole('img');
-  expect(img).toHaveLength(2);
+  expect(img).toHaveLength(3);
 });
 
-// http://acnhapi.com/v1a/villagers
+test('successfully filter species of villager', async () => {
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  );
+  const dropDown = await screen.findByRole('combobox');
+  userEvent.selectOptions(dropDown, 'Anteater');
+  const links = screen.getAllByRole('link');
+  expect(links).toHaveLength(2);
+});
